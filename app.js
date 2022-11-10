@@ -7,34 +7,25 @@ var logger = require('morgan');
 var electronics = require("./models/electronics");
 require('dotenv').config();
 const connectionString =
-
 process.env.MONGO_CON
-
 mongoose = require('mongoose');
-
 mongoose.connect(connectionString,
-
   {
-
     useNewUrlParser: true,
-
     useUnifiedTopology: true
-
   });
-
 var db = mongoose.connection;
 //Bind connection to error event
 db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
 db.once("open", function () {
-
   console.log("Connection to DB succeeded")
-
 });
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var electronicsRouter = require('./routes/electronics');
 var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
 var app = express();
 
 // view engine setup
@@ -52,6 +43,7 @@ app.use('/users', usersRouter);
 app.use('/electronics', electronicsRouter);
 app.use('/gridbuild', gridbuildRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 // We can seed the collection if needed on server start
 
 async function recreateDB(){
