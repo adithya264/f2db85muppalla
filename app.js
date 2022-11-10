@@ -35,7 +35,6 @@ var usersRouter = require('./routes/users');
 var electronicsRouter = require('./routes/electronics');
 var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
-const electronics = require('./models/electronics');
 var app = express();
 
 // view engine setup
@@ -59,11 +58,11 @@ async function recreateDB(){
 
   // Delete everything
  
-  await electonics.deleteMany();
+  await electronics.deleteMany();
  
   let instance1 = new
  
- electonics({electronics_product:"Toaster", electronics_price: 100,electronics_Size: "small"});
+ electronics({electronics_product:"Toaster", electronics_price: 100,electronics_Size: "small"});
  
   instance1.save( function(err,doc) {
  
