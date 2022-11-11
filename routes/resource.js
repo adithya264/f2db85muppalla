@@ -18,3 +18,5 @@ router.get('/electronicss/:id', electronics_controller.electronics_detail);
 // GET request for list of all electronics items.
 router.get('/electronicss', electronics_controller.electronics_list);
 module.exports = router;
+// GET request for one electronic.
+router.get('/electronicss/:id', electronics_controller.electronics_detail);
