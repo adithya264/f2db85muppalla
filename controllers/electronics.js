@@ -94,3 +94,28 @@ exports.electronics_view_all_Page = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }  
 };
+// Handle Electronics delete on DELETE. 
+exports.electronics_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await electronics.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+// Handle a show one view with id specified by query 
+exports.electronics_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await electronics.findById( req.query.id) 
+        res.render('electronicsdetail',  
+{ title: 'electronics Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+};
