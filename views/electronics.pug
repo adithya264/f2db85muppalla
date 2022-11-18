@@ -2,14 +2,15 @@ extends layout
 
 block content
   h1= title
-  - let results=[{electronics_product:"Toaster", electronics_price:100, electronics_size:'small'},{electronics_product:"Micro Owen", electronics_price:20, electronics_size :'large'},{electronics_product :"Telivision", electronics_price :3690, electronics_size:"large"}]
+  - var results = results
   div(class="container-fluid")
-  div(class="row")
-    each value,index in results
-      div(class="electronicsAttr col-sm-2" onclick=`buy(${index})`)  #{value.electronics_product} electronics , price #{value.electronics_price}, with size #{value.electronics_size}
+    div(class="row m-1")
+      each item in results  
+        - let destination = `dispatch(\"/electronics/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.electronics_product}(#{item.electronics_price}) is #{item.electronics_size}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+   
   script.
-    function buy(index)
-    {
-      alert(`Your purchased Item ${index+1}`)
+    function dispatch(path){
+      window.location.href=path
     }
-    

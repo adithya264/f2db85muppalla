@@ -5,14 +5,14 @@ block content
  
   form(id='electronicsForm', action="/resource/electronics", method="POST") 
     div.form-group 
-        label.electronicsAttr(for='electronics_type') electronics type 
-        input#electronics_type(type='text', name='electronics_type') 
+        label.electronicsAttr(for='electronics_product') electronics type 
+        input#electronics_product(type="text")(type='text', name='electronics_product') 
     div.form-group 
         label.electronicsAttr(for='size') electronics size 
-        input#size(type='text', name='size') 
+        input#size(type='number', name='size') 
     div.form-group 
-        label.electronicsAttr(for='cost') electronics cost 
-        input#cost(type='number', name='cost') 
+        label.electronicsAttr(for='price') electronics cost 
+        input#cost(type='number', name='price') 
     input(type="submit") 
  
   script. 
@@ -32,3 +32,4 @@ block content
         alert("Save failed " + error ) 
       }); 
     });
+    
