@@ -2,15 +2,29 @@ extends layout
 
 block content
   h1= title
-  - var results = results
+  - let destination = `dispatch(\"/electronics/create\")` 
+   button.btn( class="btn-primary ml-1", onclick= destination) Create
+
+  - let results=[{electronics_product:"Toaster", electronics_price:10, electronics_size:'large'},{electronics_product:"Micro Owen", electronics_price:20, electronics_size :'small'},{electronics_product :"Television", electronics_price :50, electronics_size:"medium"}]
   div(class="container-fluid")
     div(class="row m-1")
-      each item in results  
-        - let destination = `dispatch(\"/electronics/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") Item #{item.electronics_product}(#{item.electronics_price}) is #{item.electronics_size}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
-   
+        each item,index in results
+             
+            - let destinationupdate = `dispatch(\"/electronics/update?id=${item._id}\")` 
+            - let destinationdelete = `dispatch(\"/electronics/delete?id=${item._id}\")`
+            - let destinationdetail = `dispatch(\"/electronics/detail?id=${item._id}\")` 
+
+            div(class="col-sm-2" onclick=`buy(${index})`)  #{item.electronics_product} electronics , price #{item.electronics_price}, with size #{item.electronics_size}
+            button.btn( class="btn-primary ml-1", onclick= destinationupdate) Update
+            button.btn( class="btn-primary ml-1", onclick= destinationdelete) Delete
+            button.btn( class="btn-primary ml-1", onclick= destinationdetail) Detail
+
   script.
-    function dispatch(path){
-      window.location.href=path
+    function buy(index){
+      alert(`Your purchased Item ${index+1}`)
     }
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
+   
