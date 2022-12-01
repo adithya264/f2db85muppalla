@@ -8,7 +8,7 @@ const electronicSchema = mongoose.Schema({
                       type: Number,
                       required:true,
                       min:1,
-                      max:80
+                      max:3690
     },
     electronics_size : {
                      type: String,
